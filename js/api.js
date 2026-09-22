@@ -89,41 +89,93 @@ const API = {
   },
 
   async getAllUsers() {
+    let firestoreUsers = [];
+
+    // 1. Try Firestore users collection if available
+    if (window.FirebaseService) {
+      try {
+        const fireRes = await window.FirebaseService.fetchAllUsersFromFirestore();
+        if (fireRes && fireRes.success && Array.isArray(fireRes.users)) {
+          firestoreUsers = fireRes.users;
+        }
+      } catch (e) {
+        console.warn("Firestore users fetch:", e);
+      }
+    }
+
+    // 2. Try Node.js Express backend
+    let backendUsers = [];
     try {
       const res = await fetch(`${API_BASE}/auth/users`, { headers: this.getHeaders() });
       if (res.ok) {
         const data = await res.json();
-        return data.users || [];
+        if (data.users && Array.isArray(data.users)) {
+          backendUsers = data.users;
+        }
       }
-      return INITIAL_HOTEL_DATA.users;
     } catch (e) {
-      return INITIAL_HOTEL_DATA.users;
+      // backend offline
     }
+
+    // 3. Merge with DataStore / LocalStorage users
+    const localUsers = DataStore.getUsers();
+    const userMap = new Map();
+    
+    // Default / Seed users
+    (INITIAL_HOTEL_DATA.users || []).forEach(u => userMap.set(u.email.toLowerCase(), u));
+    
+    // Local storage users
+    localUsers.forEach(u => {
+      if (u && u.email) {
+        const existing = userMap.get(u.email.toLowerCase()) || {};
+        userMap.set(u.email.toLowerCase(), { ...existing, ...u });
+      }
+    });
+
+    // Backend users
+    backendUsers.forEach(u => {
+      if (u && u.email) {
+        const existing = userMap.get(u.email.toLowerCase()) || {};
+        userMap.set(u.email.toLowerCase(), { ...existing, ...u });
+      }
+    });
+
+    // Firestore users
+    firestoreUsers.forEach(u => {
+      if (u && u.email) {
+        const existing = userMap.get(u.email.toLowerCase()) || {};
+        userMap.set(u.email.toLowerCase(), { ...existing, ...u });
+      }
+    });
+
+    const combined = Array.from(userMap.values());
+    localStorage.setItem(STORAGE_KEYS.USERS, JSON.stringify(combined));
+    return combined;
   },
 
   async updateUserRole(userId, newRole) {
     try {
-      const res = await fetch(`${API_BASE}/auth/users/${userId}/role`, {
+      fetch(`${API_BASE}/auth/users/${userId}/role`, {
         method: "PUT",
         headers: this.getHeaders(),
         body: JSON.stringify({ role: newRole })
-      });
-      return await res.json();
-    } catch (e) {
-      return { success: true, message: "Updated locally" };
-    }
+      }).catch(() => {});
+    } catch (e) {}
+
+    const updated = DataStore.updateUserRole(userId, newRole);
+    return { success: true, user: updated, message: `Role updated to ${newRole}` };
   },
 
   async deleteUser(userId) {
     try {
-      const res = await fetch(`${API_BASE}/auth/users/${userId}`, {
+      fetch(`${API_BASE}/auth/users/${userId}`, {
         method: "DELETE",
         headers: this.getHeaders()
-      });
-      return await res.json();
-    } catch (e) {
-      return { success: true, message: "Deleted locally" };
-    }
+      }).catch(() => {});
+    } catch (e) {}
+
+    DataStore.deleteUser(userId);
+    return { success: true, message: "User deleted successfully" };
   },
 
   // --------------------------------------------------------------------------

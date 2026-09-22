@@ -25,6 +25,11 @@ app.use(cors({ origin: '*' }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Root route - redirect directly to login page
+app.get('/', (req, res) => {
+  res.redirect('/login.html');
+});
+
 // Serve frontend static files
 app.use(express.static(path.join(__dirname, '../frontend')));
 app.use(express.static(path.join(__dirname, '..')));

@@ -271,6 +271,49 @@ window.FirebaseService = {
       console.warn("Firestore save consent:", error.message);
       return { success: false, error: error.message };
     }
+  },
+
+  // --------------------------------------------------------------------------
+  // Cloud Firestore Users Collection
+  // --------------------------------------------------------------------------
+  async fetchAllUsersFromFirestore() {
+    try {
+      const q = query(collection(db, "users"));
+      const snapshot = await getDocs(q);
+      const users = [];
+      snapshot.forEach((d) => {
+        const u = d.data();
+        if (u) {
+          if (!u.id) u.id = d.id;
+          users.push(u);
+        }
+      });
+      return { success: true, users };
+    } catch (error) {
+      console.warn("Firestore fetch users:", error.message);
+      return { success: false, users: [] };
+    }
+  },
+
+  async saveUserToFirestore(user) {
+    try {
+      const uid = user.firebaseUid || user.id || ("usr-" + Date.now());
+      await setDoc(doc(db, "users", uid), user, { merge: true });
+      return { success: true };
+    } catch (error) {
+      console.warn("Firestore save user:", error.message);
+      return { success: false, error: error.message };
+    }
+  },
+
+  async deleteUserFromFirestore(userId) {
+    try {
+      await deleteDoc(doc(db, "users", userId));
+      return { success: true };
+    } catch (error) {
+      console.warn("Firestore delete user:", error.message);
+      return { success: false, error: error.message };
+    }
   }
 };
 

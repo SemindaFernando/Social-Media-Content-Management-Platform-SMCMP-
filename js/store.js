@@ -8,7 +8,8 @@ const STORAGE_KEYS = {
   POSTS: "grand_azure_posts_v1",
   CAMPAIGNS: "grand_azure_campaigns_v1",
   CONSENTS: "grand_azure_consents_v1",
-  CURRENT_USER: "grand_azure_current_user_v1"
+  CURRENT_USER: "grand_azure_current_user_v1",
+  USERS: "grand_azure_users_v1"
 };
 
 const DataStore = {
@@ -25,6 +26,9 @@ const DataStore = {
     }
     if (!localStorage.getItem(STORAGE_KEYS.CURRENT_USER)) {
       localStorage.setItem(STORAGE_KEYS.CURRENT_USER, JSON.stringify(INITIAL_HOTEL_DATA.users[0]));
+    }
+    if (!localStorage.getItem(STORAGE_KEYS.USERS)) {
+      localStorage.setItem(STORAGE_KEYS.USERS, JSON.stringify(INITIAL_HOTEL_DATA.users));
     }
   },
 
@@ -230,6 +234,64 @@ const DataStore = {
     let list = this.getConsents();
     list = list.filter(c => c.id !== id);
     localStorage.setItem(STORAGE_KEYS.CONSENTS, JSON.stringify(list));
+    return true;
+  },
+
+  // --------------------------------------------------------------------------
+  // Users & Staff Management CRUD
+  // --------------------------------------------------------------------------
+  getUsers() {
+    this.init();
+    let users = JSON.parse(localStorage.getItem(STORAGE_KEYS.USERS) || "[]");
+    if (!users || users.length === 0) {
+      users = [...INITIAL_HOTEL_DATA.users];
+      localStorage.setItem(STORAGE_KEYS.USERS, JSON.stringify(users));
+    }
+    return users;
+  },
+
+  addUser(userData) {
+    const users = this.getUsers();
+    const existingIndex = users.findIndex(u => u.email && u.email.toLowerCase() === (userData.email || "").toLowerCase());
+    if (existingIndex !== -1) {
+      users[existingIndex] = { ...users[existingIndex], ...userData };
+    } else {
+      users.push(userData);
+    }
+    localStorage.setItem(STORAGE_KEYS.USERS, JSON.stringify(users));
+    return userData;
+  },
+
+  updateUserRole(userId, newRole) {
+    const users = this.getUsers();
+    const u = users.find(x => x.id === userId || x.firebaseUid === userId);
+    if (u) {
+      u.role = newRole;
+      u.badgeClass = newRole === "Administrator" ? "admin" : newRole === "Content Approver" ? "approver" : "creator";
+      localStorage.setItem(STORAGE_KEYS.USERS, JSON.stringify(users));
+      
+      const cur = AuthService.getCurrentUser();
+      if (cur && (cur.id === userId || cur.email === u.email)) {
+        cur.role = newRole;
+        cur.badgeClass = u.badgeClass;
+        localStorage.setItem(STORAGE_KEYS.CURRENT_USER, JSON.stringify(cur));
+      }
+      
+      if (window.FirebaseService) {
+        window.FirebaseService.saveUserToFirestore(u);
+      }
+      return u;
+    }
+    return null;
+  },
+
+  deleteUser(userId) {
+    let users = this.getUsers();
+    users = users.filter(x => x.id !== userId && x.firebaseUid !== userId);
+    localStorage.setItem(STORAGE_KEYS.USERS, JSON.stringify(users));
+    if (window.FirebaseService) {
+      window.FirebaseService.deleteUserFromFirestore(userId);
+    }
     return true;
   },
 
