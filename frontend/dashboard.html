@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Content Dashboard | Grand Azure Hotel SMCMP</title>
+  
+  <!-- Google Fonts & Bootstrap 5 & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/custom.css">
+</head>
+<body>
+
+  <div class="app-wrapper">
+    
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <a href="index.html" class="sidebar-brand">
+        <div class="brand-icon"><i class="bi bi-building"></i></div>
+        <div>
+          <div class="brand-title hotel-heading">Grand Azure</div>
+          <div class="brand-subtitle">HOTEL SMCMP</div>
+        </div>
+      </a>
+
+      <ul class="sidebar-menu">
+        <li class="menu-category">Content Management</li>
+        <li class="nav-item">
+          <a href="dashboard.html" class="nav-link active"><i class="bi bi-grid-1x2-fill"></i><span>Dashboard</span></a>
+        </li>
+        <li class="nav-item">
+          <a href="create-post.html" class="nav-link"><i class="bi bi-plus-square-fill"></i><span>Create Post & AI</span></a>
+        </li>
+        <li class="nav-item">
+          <a href="approval-workflow.html" class="nav-link"><i class="bi bi-diagram-3-fill"></i><span>Approval Workflow</span></a>
+        </li>
+        <li class="nav-item">
+          <a href="calendar.html" class="nav-link"><i class="bi bi-calendar3"></i><span>Content Calendar</span></a>
+        </li>
+
+        <li class="menu-category">Marketing & Strategy</li>
+        <li class="nav-item">
+          <a href="campaigns.html" class="nav-link"><i class="bi bi-bullseye"></i><span>Campaigns</span></a>
+        </li>
+        <li class="nav-item">
+          <a href="analytics.html" class="nav-link"><i class="bi bi-graph-up-arrow"></i><span>Analytics Reports</span></a>
+        </li>
+        <li class="nav-item">
+          <a href="strategy.html" class="nav-link"><i class="bi bi-lightbulb-fill"></i><span>Strategy & Best Times</span></a>
+        </li>
+
+        <li class="menu-category">Governance & Administration</li>
+        <li class="nav-item" data-role-guard="admin">
+          <a href="users.html" class="nav-link"><i class="bi bi-people-fill"></i><span>User Management</span></a>
+        </li>
+        <li class="nav-item">
+          <a href="privacy-compliance.html" class="nav-link"><i class="bi bi-shield-check"></i><span>Privacy & Consent</span></a>
+        </li>
+      </ul>
+
+      <!-- Current User Card in Sidebar -->
+      <div class="sidebar-user-card">
+        <div class="d-flex align-items-center gap-2 mb-2">
+          <img src="" class="current-user-avatar rounded-circle" width="38" height="38" alt="User">
+          <div class="overflow-hidden">
+            <div class="current-user-name fw-bold small text-white text-truncate">User Name</div>
+            <span class="current-user-role role-badge">Role</span>
+          </div>
+        </div>
+        <div class="d-flex justify-content-between align-items-center mt-2 pt-2 border-top border-secondary">
+          <a href="login.html" class="text-light opacity-75 small text-decoration-none"><i class="bi bi-arrow-left-right me-1"></i>Switch</a>
+          <a href="login.html" class="text-danger small text-decoration-none"><i class="bi bi-box-arrow-right me-1"></i>Logout</a>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <div class="main-content">
+      
+      <!-- Top Navbar -->
+      <header class="top-navbar">
+        <div class="d-flex align-items-center gap-3">
+          <button class="btn btn-outline-secondary btn-sm d-lg-none" id="sidebarToggleBtn">
+            <i class="bi bi-list fs-5"></i>
+          </button>
+          <div class="page-title-wrap">
+            <h1>Content Dashboard</h1>
+            <p>Manage, schedule, and track all Grand Azure social media posts across 6 channels</p>
+          </div>
+        </div>
+
+        <div class="d-flex align-items-center gap-3">
+          <!-- Role Switcher Dropdown -->
+          <div class="dropdown">
+            <button class="btn btn-sm btn-outline-secondary dropdown-toggle d-flex align-items-center gap-2" type="button" data-bs-toggle="dropdown">
+              <span class="current-user-role role-badge">Role</span>
+              <span class="d-none d-md-inline current-user-name">User</span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end shadow-sm">
+              <li><h6 class="dropdown-header">Switch Role Simulation</h6></li>
+              <li><a class="dropdown-item role-switch-item" href="#" data-role="Administrator"><i class="bi bi-shield-lock-fill text-purple me-2"></i>Administrator (Victoria)</a></li>
+              <li><a class="dropdown-item role-switch-item" href="#" data-role="Content Creator"><i class="bi bi-pencil-square text-primary me-2"></i>Content Creator (Marcus)</a></li>
+              <li><a class="dropdown-item role-switch-item" href="#" data-role="Content Approver"><i class="bi bi-check2-circle text-warning me-2"></i>Content Approver (Elena)</a></li>
+            </ul>
+          </div>
+
+          <!-- Firebase Cloud Manager Button -->
+          <button class="btn btn-sm btn-outline-warning text-dark d-flex align-items-center gap-1" data-bs-toggle="modal" data-bs-target="#firebaseManagerModal">
+            <i class="bi bi-fire text-warning"></i>
+            <span class="d-none d-sm-inline fw-semibold">Firebase Cloud</span>
+          </button>
+
+          <a href="create-post.html" class="btn btn-gold btn-sm"><i class="bi bi-plus-lg me-1"></i>Create Post</a>
+        </div>
+      </header>
+
+      <!-- Dashboard Body -->
+      <div class="p-4">
+        
+        <!-- Metric Cards Row -->
+        <div class="row g-3 mb-4">
+          <div class="col-6 col-md-4 col-xl-2">
+            <div class="stat-card">
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <small class="text-muted fw-semibold">Total Posts</small>
+                  <h3 class="fw-bold mt-1 mb-0" id="statTotalPosts">0</h3>
+                </div>
+                <div class="stat-icon primary"><i class="bi bi-collection-fill"></i></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-6 col-md-4 col-xl-2">
+            <div class="stat-card">
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <small class="text-muted fw-semibold">Published</small>
+                  <h3 class="fw-bold mt-1 mb-0 text-success" id="statPublished">0</h3>
+                </div>
+                <div class="stat-icon success"><i class="bi bi-check-circle-fill"></i></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-6 col-md-4 col-xl-2">
+            <div class="stat-card">
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <small class="text-muted fw-semibold">Scheduled</small>
+                  <h3 class="fw-bold mt-1 mb-0 text-info" id="statScheduled">0</h3>
+                </div>
+                <div class="stat-icon primary"><i class="bi bi-calendar-check-fill"></i></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-6 col-md-4 col-xl-2">
+            <div class="stat-card">
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <small class="text-muted fw-semibold">In Review</small>
+                  <h3 class="fw-bold mt-1 mb-0 text-warning" id="statInReview">0</h3>
+                </div>
+                <div class="stat-icon warning"><i class="bi bi-hourglass-split"></i></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-6 col-md-4 col-xl-2">
+            <div class="stat-card">
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <small class="text-muted fw-semibold">Drafts</small>
+                  <h3 class="fw-bold mt-1 mb-0 text-secondary" id="statDrafts">0</h3>
+                </div>
+                <div class="stat-icon purple"><i class="bi bi-file-earmark-text-fill"></i></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-6 col-md-4 col-xl-2">
+            <div class="stat-card">
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <small class="text-muted fw-semibold">Total Reach</small>
+                  <h3 class="fw-bold mt-1 mb-0 text-primary" id="statTotalReach">0</h3>
+                </div>
+                <div class="stat-icon primary"><i class="bi bi-eye-fill"></i></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Toolbar & Filter Bar -->
+        <div class="card card-luxury mb-4">
+          <div class="card-body p-3">
+            <div class="row g-3 align-items-center">
+              
+              <!-- Search Box -->
+              <div class="col-md-4 col-lg-3">
+                <div class="input-group">
+                  <span class="input-group-text bg-light border-end-0"><i class="bi bi-search"></i></span>
+                  <input type="text" id="searchInput" class="form-control border-start-0 bg-light" placeholder="Search posts, captions, hashtags...">
+                </div>
+              </div>
+
+              <!-- Status Filter Tabs -->
+              <div class="col-md-8 col-lg-5">
+                <div class="btn-group w-100" role="group" id="statusFilterGroup">
+                  <button type="button" class="btn btn-sm btn-outline-secondary active" data-status="all">All</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary" data-status="published">Published</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary" data-status="scheduled">Scheduled</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary" data-status="in_review">In Review</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary" data-status="draft">Drafts</button>
+                </div>
+              </div>
+
+              <!-- Platform Filter -->
+              <div class="col-6 col-md-6 col-lg-2">
+                <select class="form-select form-select-sm bg-light" id="platformFilter">
+                  <option value="all">All Platforms</option>
+                  <option value="instagram">Instagram</option>
+                  <option value="facebook">Facebook</option>
+                  <option value="tiktok">TikTok</option>
+                  <option value="linkedin">LinkedIn</option>
+                  <option value="x">X (Twitter)</option>
+                  <option value="youtube">YouTube</option>
+                </select>
+              </div>
+
+              <!-- View Switcher & Reset -->
+              <div class="col-6 col-md-6 col-lg-2 d-flex justify-content-end gap-2">
+                <div class="btn-group" role="group">
+                  <button type="button" class="btn btn-sm btn-outline-secondary active" id="viewGridBtn" title="Grid View"><i class="bi bi-grid-fill"></i></button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary" id="viewListBtn" title="List View"><i class="bi bi-list-ul"></i></button>
+                </div>
+                <button class="btn btn-sm btn-outline-warning btn-reset-data" title="Reset Demo Data"><i class="bi bi-arrow-counterclockwise"></i></button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- Post Cards Grid Container -->
+        <div id="postsGridContainer" class="row g-4">
+          <!-- Dynamically populated -->
+        </div>
+
+        <!-- Post Table List Container (Hidden by default) -->
+        <div id="postsListContainer" class="card card-luxury d-none">
+          <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+              <thead class="table-light">
+                <tr>
+                  <th style="width: 80px;">Media</th>
+                  <th>Post Title & Caption</th>
+                  <th>Platforms</th>
+                  <th>Campaign</th>
+                  <th>Schedule / Date</th>
+                  <th>Status</th>
+                  <th class="text-end">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="postsTableBody">
+                <!-- Dynamically populated -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Empty State -->
+        <div id="emptyState" class="text-center py-5 d-none">
+          <div class="stat-icon purple mx-auto mb-3" style="width:64px;height:64px;font-size:2rem;"><i class="bi bi-search"></i></div>
+          <h5 class="fw-bold">No posts found</h5>
+          <p class="text-muted small">Try adjusting your filters or search terms.</p>
+          <button class="btn btn-sm btn-navy" onclick="resetFilters()">Clear Filters</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Post Detail / Preview Modal -->
+  <div class="modal fade" id="postDetailModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content border-0 shadow-lg">
+        <div class="modal-header border-bottom">
+          <h5 class="modal-title fw-bold hotel-heading" id="modalPostTitle">Post Preview</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body p-4">
+          <div class="row g-4">
+            <div class="col-md-6">
+              <img id="modalPostImage" src="" class="img-fluid rounded-3 shadow-sm w-100" style="max-height:360px; object-fit:cover;" alt="Post Media">
+              <div class="mt-3 p-3 bg-light rounded-3">
+                <small class="text-muted d-block fw-semibold mb-1">Target Platforms:</small>
+                <div id="modalPostPlatforms" class="mb-2"></div>
+                <small class="text-muted d-block fw-semibold mb-1">Campaign:</small>
+                <span id="modalPostCampaign" class="badge bg-secondary">None</span>
+              </div>
+            </div>
+            <div class="col-md-6 d-flex flex-direction-column justify-content-between">
+              <div>
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <span id="modalPostStatus"></span>
+                  <small class="text-muted" id="modalPostDate"></small>
+                </div>
+                <h6 class="fw-bold text-muted small text-uppercase">Caption</h6>
+                <div class="p-3 bg-light rounded-3 mb-3" id="modalPostCaption" style="white-space: pre-wrap; font-size: 0.9rem; line-height: 1.5;"></div>
+                
+                <div id="modalPostAnalytics" class="mb-3">
+                  <h6 class="fw-bold text-muted small text-uppercase">Performance Metrics</h6>
+                  <div class="row g-2 text-center">
+                    <div class="col-3 p-2 bg-light rounded border"><small class="text-muted d-block">Likes</small><b id="modalLikes">0</b></div>
+                    <div class="col-3 p-2 bg-light rounded border"><small class="text-muted d-block">Shares</small><b id="modalShares">0</b></div>
+                    <div class="col-3 p-2 bg-light rounded border"><small class="text-muted d-block">Comments</small><b id="modalComments">0</b></div>
+                    <div class="col-3 p-2 bg-light rounded border"><small class="text-muted d-block">Reach</small><b id="modalReach">0</b></div>
+                  </div>
+                </div>
+
+                <div id="modalApprovalNotesBox" class="p-2 bg-warning-subtle border border-warning rounded small text-dark d-none">
+                  <b>Approver Notes:</b> <span id="modalApprovalNotes"></span>
+                </div>
+              </div>
+
+              <div class="d-flex justify-content-end gap-2 mt-4 pt-3 border-top">
+                <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+                <a href="#" id="modalEditBtn" class="btn btn-navy btn-sm"><i class="bi bi-pencil me-1"></i>Edit Post</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete Confirmation Modal -->
+  <div class="modal fade" id="deleteConfirmModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-sm modal-dialog-centered">
+      <div class="modal-content border-0 shadow">
+        <div class="modal-body text-center p-4">
+          <div class="stat-icon danger mx-auto mb-3"><i class="bi bi-trash-fill"></i></div>
+          <h5 class="fw-bold">Delete Post?</h5>
+          <p class="text-muted small">Are you sure you want to permanently delete this hotel post?</p>
+          <div class="d-flex justify-content-center gap-2 mt-3">
+            <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-sm btn-danger" id="confirmDeleteBtn">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Firebase Cloud Manager & Seeder Modal -->
+  <div class="modal fade" id="firebaseManagerModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content border-0 shadow-lg">
+        <div class="modal-header bg-dark text-white" style="background: #0f172a !important;">
+          <h5 class="modal-title fw-bold d-flex align-items-center gap-2">
+            <i class="bi bi-fire text-warning fs-4"></i> Cloud Firestore Manager
+          </h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body p-4">
+          <div class="p-3 bg-light rounded-3 mb-3 border">
+            <div class="d-flex justify-content-between align-items-center mb-1">
+              <small class="text-muted fw-bold">PROJECT ID:</small>
+              <span class="badge bg-warning text-dark font-monospace">hotel-smcmp</span>
+            </div>
+            <div class="d-flex justify-content-between align-items-center">
+              <small class="text-muted fw-bold">DATABASE STATUS:</small>
+              <span class="badge bg-success"><i class="bi bi-check-circle me-1"></i>Connected (v12.19.0)</span>
+            </div>
+          </div>
+
+          <p class="text-secondary small mb-3">
+            Click the buttons below to automatically seed and sync all hotel social posts, campaigns, users, and consent records directly into your Firebase Cloud Firestore collections.
+          </p>
+
+          <div class="d-grid gap-2 mb-3">
+            <button type="button" class="btn btn-navy py-2" id="btnSeedFirestore">
+              <i class="bi bi-cloud-arrow-up-fill text-warning me-2"></i>🔥 Push / Seed All 18+ Posts to Firestore
+            </button>
+            <button type="button" class="btn btn-outline-primary py-2" id="btnPullFirestore">
+              <i class="bi bi-cloud-arrow-down-fill me-2"></i>📥 Pull / Sync from Firestore to Local
+            </button>
+          </div>
+
+          <div id="firestoreProgressAlert" class="alert alert-info py-2 small d-none">
+            <div class="d-flex align-items-center gap-2">
+              <span class="spinner-border spinner-border-sm"></span>
+              <span id="firestoreProgressText">Syncing data to Cloud Firestore...</span>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/app.js"></script>
+  <script type="module" src="js/firebase-config.js"></script>
+
+  <script>
+    let currentFilter = {
+      status: "all",
+      platform: "all",
+      search: "",
+      view: "grid"
+    };
+    let postToDeleteId = null;
+
+    document.addEventListener("DOMContentLoaded", () => {
+      renderStats();
+      renderPosts();
+      setupEvents();
+    });
+
+    function renderStats() {
+      const summary = DataStore.getAnalyticsSummary();
+      document.getElementById("statTotalPosts").textContent = summary.totalPosts;
+      document.getElementById("statPublished").textContent = summary.publishedCount;
+      document.getElementById("statScheduled").textContent = summary.scheduledCount;
+      document.getElementById("statInReview").textContent = summary.inReviewCount;
+      document.getElementById("statDrafts").textContent = summary.draftCount;
+      document.getElementById("statTotalReach").textContent = summary.totalReach.toLocaleString();
+    }
+
+    function renderPosts() {
+      const posts = DataStore.getPosts(currentFilter);
+      const gridContainer = document.getElementById("postsGridContainer");
+      const listBody = document.getElementById("postsTableBody");
+      const emptyState = document.getElementById("emptyState");
+      const campaigns = DataStore.getCampaigns();
+
+      gridContainer.innerHTML = "";
+      listBody.innerHTML = "";
+
+      if (posts.length === 0) {
+        emptyState.classList.remove("d-none");
+        return;
+      }
+      emptyState.classList.add("d-none");
+
+      posts.forEach(post => {
+        const camp = campaigns.find(c => c.id === post.campaignId);
+        const campName = camp ? camp.name : "General Hotel";
+        const platformBadges = App.getPlatformBadges(post.platforms);
+        const statusBadge = App.getStatusBadge(post.status);
+        const formattedDate = App.formatDate(post.scheduledDate);
+
+        // Render Grid Card
+        const cardHtml = `
+          <div class="col-md-6 col-lg-4">
+            <div class="post-card">
+              <div class="post-card-img-wrap">
+                <img src="${post.image}" alt="${post.title}" loading="lazy">
+                <div class="position-absolute top-0 start-0 m-2">
+                  ${statusBadge}
+                </div>
+                <div class="position-absolute bottom-0 end-0 m-2">
+                  ${platformBadges}
+                </div>
+              </div>
+              <div class="p-3 d-flex flex-column flex-grow-1">
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                  <span class="badge bg-light text-dark border small text-truncate" style="max-width:140px;">${campName}</span>
+                  <small class="text-muted"><i class="bi bi-clock me-1"></i>${formattedDate}</small>
+                </div>
+                <h6 class="fw-bold mb-1 text-truncate">${post.title}</h6>
+                <p class="text-muted small mb-3 flex-grow-1" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; line-height: 1.4;">
+                  ${post.caption}
+                </p>
+                <div class="d-flex justify-content-between align-items-center pt-2 border-top">
+                  <div class="small text-muted">By: <b>${post.author.split(' ')[0]}</b></div>
+                  <div class="btn-group">
+                    <button class="btn btn-sm btn-outline-secondary" onclick="viewPostDetail('${post.id}')" title="Preview"><i class="bi bi-eye"></i></button>
+                    <a href="create-post.html?id=${post.id}" class="btn btn-sm btn-outline-secondary" title="Edit"><i class="bi bi-pencil"></i></a>
+                    <button class="btn btn-sm btn-outline-danger" onclick="confirmDelete('${post.id}')" title="Delete"><i class="bi bi-trash"></i></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+        gridContainer.insertAdjacentHTML("beforeend", cardHtml);
+
+        // Render List Row
+        const rowHtml = `
+          <tr>
+            <td>
+              <img src="${post.image}" class="rounded" width="60" height="42" style="object-fit:cover;" alt="">
+            </td>
+            <td>
+              <div class="fw-bold text-dark">${post.title}</div>
+              <small class="text-muted text-truncate d-block" style="max-width: 320px;">${post.caption}</small>
+            </td>
+            <td>${platformBadges}</td>
+            <td><span class="badge bg-light text-dark border">${campName}</span></td>
+            <td>
+              <div class="small fw-semibold">${formattedDate}</div>
+              <small class="text-muted">${post.scheduledTime || '12:00'}</small>
+            </td>
+            <td>${statusBadge}</td>
+            <td class="text-end">
+              <div class="btn-group">
+                <button class="btn btn-sm btn-outline-secondary" onclick="viewPostDetail('${post.id}')"><i class="bi bi-eye"></i></button>
+                <a href="create-post.html?id=${post.id}" class="btn btn-sm btn-outline-secondary"><i class="bi bi-pencil"></i></a>
+                <button class="btn btn-sm btn-outline-danger" onclick="confirmDelete('${post.id}')"><i class="bi bi-trash"></i></button>
+              </div>
+            </td>
+          </tr>
+        `;
+        listBody.insertAdjacentHTML("beforeend", rowHtml);
+      });
+    }
+
+    function setupEvents() {
+      // Search
+      document.getElementById("searchInput").addEventListener("input", (e) => {
+        currentFilter.search = e.target.value;
+        renderPosts();
+      });
+
+      // Status Tabs
+      document.querySelectorAll("#statusFilterGroup button").forEach(btn => {
+        btn.addEventListener("click", () => {
+          document.querySelectorAll("#statusFilterGroup button").forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+          currentFilter.status = btn.getAttribute("data-status");
+          renderPosts();
+        });
+      });
+
+      // Platform Filter
+      document.getElementById("platformFilter").addEventListener("change", (e) => {
+        currentFilter.platform = e.target.value;
+        renderPosts();
+      });
+
+      // View switcher
+      document.getElementById("viewGridBtn").addEventListener("click", () => {
+        document.getElementById("viewGridBtn").classList.add("active");
+        document.getElementById("viewListBtn").classList.remove("active");
+        document.getElementById("postsGridContainer").classList.remove("d-none");
+        document.getElementById("postsListContainer").classList.add("d-none");
+      });
+
+      document.getElementById("viewListBtn").addEventListener("click", () => {
+        document.getElementById("viewListBtn").classList.add("active");
+        document.getElementById("viewGridBtn").classList.remove("active");
+        document.getElementById("postsGridContainer").classList.add("d-none");
+        document.getElementById("postsListContainer").classList.remove("d-none");
+      });
+
+      // Confirm Delete
+      document.getElementById("confirmDeleteBtn").addEventListener("click", () => {
+        if (postToDeleteId) {
+          DataStore.deletePost(postToDeleteId);
+          App.showToast("Hotel post deleted successfully.", "danger");
+          postToDeleteId = null;
+          bootstrap.Modal.getInstance(document.getElementById("deleteConfirmModal")).hide();
+          renderStats();
+          renderPosts();
+        }
+      });
+    }
+
+    function viewPostDetail(id) {
+      const post = DataStore.getPostById(id);
+      if (!post) return;
+
+      const camp = DataStore.getCampaignById(post.campaignId);
+
+      document.getElementById("modalPostTitle").textContent = post.title;
+      document.getElementById("modalPostImage").src = post.image;
+      document.getElementById("modalPostCaption").textContent = post.caption;
+      document.getElementById("modalPostPlatforms").innerHTML = App.getPlatformBadges(post.platforms);
+      document.getElementById("modalPostCampaign").textContent = camp ? camp.name : "General Hotel";
+      document.getElementById("modalPostStatus").innerHTML = App.getStatusBadge(post.status);
+      document.getElementById("modalPostDate").textContent = "Scheduled: " + App.formatDate(post.scheduledDate) + " at " + (post.scheduledTime || '12:00');
+      document.getElementById("modalEditBtn").href = `create-post.html?id=${post.id}`;
+
+      if (post.analytics && post.status === "published") {
+        document.getElementById("modalPostAnalytics").classList.remove("d-none");
+        document.getElementById("modalLikes").textContent = post.analytics.likes.toLocaleString();
+        document.getElementById("modalShares").textContent = post.analytics.shares.toLocaleString();
+        document.getElementById("modalComments").textContent = post.analytics.comments.toLocaleString();
+        document.getElementById("modalReach").textContent = post.analytics.reach.toLocaleString();
+      } else {
+        document.getElementById("modalPostAnalytics").classList.add("d-none");
+      }
+
+      if (post.approvalNotes) {
+        document.getElementById("modalApprovalNotesBox").classList.remove("d-none");
+        document.getElementById("modalApprovalNotes").textContent = post.approvalNotes;
+      } else {
+        document.getElementById("modalApprovalNotesBox").classList.add("d-none");
+      }
+
+      new bootstrap.Modal(document.getElementById("postDetailModal")).show();
+    }
+
+    function confirmDelete(id) {
+      postToDeleteId = id;
+      new bootstrap.Modal(document.getElementById("deleteConfirmModal")).show();
+    }
+
+    function resetFilters() {
+      currentFilter = { status: "all", platform: "all", search: "", view: "grid" };
+      document.getElementById("searchInput").value = "";
+      document.getElementById("platformFilter").value = "all";
+      document.querySelectorAll("#statusFilterGroup button").forEach(b => b.classList.remove("active"));
+      renderPosts();
+    }
+
+    // Firebase Cloud Firestore Seeder & Sync Handlers
+    setTimeout(() => {
+      const btnSeed = document.getElementById("btnSeedFirestore");
+      const btnPull = document.getElementById("btnPullFirestore");
+      const alertBox = document.getElementById("firestoreProgressAlert");
+      const alertText = document.getElementById("firestoreProgressText");
+
+      if (btnSeed) {
+        btnSeed.addEventListener("click", async () => {
+          if (!window.FirebaseService) {
+            alert("Firebase Service is loading. Please try again in a moment.");
+            return;
+          }
+          btnSeed.disabled = true;
+          alertBox.classList.remove("d-none");
+          
+          const result = await window.FirebaseService.seedAllDataToFirestore((msg) => {
+            alertText.textContent = msg;
+          });
+
+          btnSeed.disabled = false;
+          if (result.success) {
+            alertText.textContent = `✅ Successfully created & seeded ${result.count} documents to Cloud Firestore!`;
+            App.showToast(`🔥 Pushed all hotel data to Firebase Cloud Firestore!`, "success");
+            setTimeout(() => alertBox.classList.add("d-none"), 3000);
+          } else {
+            alertText.textContent = `Note: ${result.error}. (Please ensure Firestore database is created in Firebase Console).`;
+          }
+        });
+      }
+
+      if (btnPull) {
+        btnPull.addEventListener("click", async () => {
+          if (!window.FirebaseService) return;
+          btnPull.disabled = true;
+          alertBox.classList.remove("d-none");
+          alertText.textContent = "Pulling live posts from Cloud Firestore...";
+
+          const res = await window.FirebaseService.fetchAllPostsFromFirestore();
+          btnPull.disabled = false;
+          alertBox.classList.add("d-none");
+
+          if (res.success) {
+            App.showToast(`📥 Synced ${res.count} posts from Cloud Firestore!`, "success");
+            renderStats();
+            renderPosts();
+          } else {
+            alert(res.message || "No data in Firestore yet. Click 'Push / Seed' first!");
+          }
+        });
+      }
+    }, 500);
+  </script>
+</body>
+</html>

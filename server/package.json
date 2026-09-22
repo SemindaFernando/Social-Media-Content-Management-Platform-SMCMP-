@@ -1,0 +1,27 @@
+{
+  "name": "hotel-smcmp-backend",
+  "version": "1.0.0",
+  "description": "Grand Azure Hotel - Social Media Content Management Platform Node.js Express REST API with 3-Member Role-Based Access Control",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "smcmp",
+    "hotel",
+    "social-media",
+    "express",
+    "nodejs",
+    "rbac",
+    "rest-api"
+  ],
+  "author": "Grand Azure Engineering Team",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2",
+    "cors": "^2.8.5",
+    "jsonwebtoken": "^9.0.2",
+    "bcryptjs": "^2.4.3"
+  }
+}

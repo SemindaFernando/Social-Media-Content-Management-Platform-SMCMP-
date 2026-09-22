@@ -1,0 +1,589 @@
+/* ==========================================================================
+   Grand Azure Luxury Hotel & Spa - SMCMP Custom Styles
+   Tech: HTML5, CSS3, Bootstrap 5, FontAwesome, Bootstrap Icons
+   ========================================================================== */
+
+:root {
+  --primary-navy: #0f172a;
+  --primary-navy-light: #1e293b;
+  --accent-gold: #c59b27;
+  --accent-gold-light: #eab308;
+  --accent-gold-soft: rgba(197, 155, 39, 0.12);
+  --accent-blue: #0284c7;
+  --bg-main: #f8fafc;
+  --card-bg: #ffffff;
+  --border-color: #e2e8f0;
+  --text-dark: #0f172a;
+  --text-muted: #64748b;
+  --success-color: #10b981;
+  --warning-color: #f59e0b;
+  --danger-color: #ef4444;
+  --info-color: #3b82f6;
+  --sidebar-width: 260px;
+  --topbar-height: 70px;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-dark);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, .hotel-heading {
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+/* --------------------------------------------------------------------------
+   Layout: Sidebar & Main Content
+   -------------------------------------------------------------------------- */
+.app-wrapper {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: var(--sidebar-width);
+  background: linear-gradient(180deg, #0b1120 0%, #1e293b 100%);
+  color: #fff;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+  z-index: 1040;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  overflow-y: auto;
+  box-shadow: 4px 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.sidebar-brand {
+  padding: 1.5rem 1.25rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  color: #fff;
+}
+
+.sidebar-brand .brand-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #c59b27, #fef08a);
+  color: #0f172a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.35rem;
+  font-weight: 700;
+  box-shadow: 0 4px 10px rgba(197, 155, 39, 0.3);
+}
+
+.sidebar-brand .brand-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  line-height: 1.2;
+}
+
+.sidebar-brand .brand-subtitle {
+  font-size: 0.7rem;
+  color: #94a3b8;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.sidebar-menu {
+  list-style: none;
+  padding: 1rem 0.75rem;
+  margin: 0;
+  flex-grow: 1;
+}
+
+.sidebar-menu .menu-category {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: #64748b;
+  padding: 0.75rem 0.75rem 0.35rem;
+  font-weight: 700;
+}
+
+.sidebar-menu .nav-item {
+  margin-bottom: 0.25rem;
+}
+
+.sidebar-menu .nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.65rem 0.85rem;
+  color: #cbd5e1;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.sidebar-menu .nav-link i {
+  font-size: 1.15rem;
+  width: 24px;
+  text-align: center;
+  color: #94a3b8;
+  transition: color 0.2s;
+}
+
+.sidebar-menu .nav-link:hover {
+  background: rgba(255, 255, 255, 0.07);
+  color: #fff;
+}
+
+.sidebar-menu .nav-link:hover i {
+  color: var(--accent-gold-light);
+}
+
+.sidebar-menu .nav-link.active {
+  background: linear-gradient(90deg, rgba(197, 155, 39, 0.22) 0%, rgba(197, 155, 39, 0.08) 100%);
+  color: #fef08a;
+  border-left: 3px solid var(--accent-gold);
+  font-weight: 600;
+}
+
+.sidebar-menu .nav-link.active i {
+  color: var(--accent-gold);
+}
+
+.sidebar-user-card {
+  padding: 1rem;
+  margin: 0.75rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+}
+
+.main-content {
+  flex-grow: 1;
+  margin-left: var(--sidebar-width);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--bg-main);
+  transition: margin-left 0.3s ease;
+}
+
+/* --------------------------------------------------------------------------
+   Top Navigation Bar
+   -------------------------------------------------------------------------- */
+.top-navbar {
+  height: var(--topbar-height);
+  background: #ffffff;
+  border-bottom: 1px solid var(--border-color);
+  padding: 0 1.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 1020;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+}
+
+.page-title-wrap h1 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin: 0;
+  color: var(--primary-navy);
+}
+
+.page-title-wrap p {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.role-badge {
+  padding: 0.35rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.role-badge.admin {
+  background: #ede9fe;
+  color: #6b21a8;
+  border: 1px solid #ddd6fe;
+}
+
+.role-badge.creator {
+  background: #dbeafe;
+  color: #1e40af;
+  border: 1px solid #bfdbfe;
+}
+
+.role-badge.approver {
+  background: #fef3c7;
+  color: #92400e;
+  border: 1px solid #fde68a;
+}
+
+/* --------------------------------------------------------------------------
+   Metric Cards & Statistics
+   -------------------------------------------------------------------------- */
+.stat-card {
+  background: #fff;
+  border-radius: 14px;
+  border: 1px solid var(--border-color);
+  padding: 1.25rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  height: 100%;
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(15, 23, 42, 0.06);
+}
+
+.stat-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+}
+
+.stat-icon.primary { background: #e0f2fe; color: #0369a1; }
+.stat-icon.success { background: #dcfce7; color: #15803d; }
+.stat-icon.warning { background: #fef3c7; color: #b45309; }
+.stat-icon.purple { background: #f3e8ff; color: #7e22ce; }
+.stat-icon.danger { background: #fee2e2; color: #b91c1c; }
+
+/* --------------------------------------------------------------------------
+   Post Cards & Badges
+   -------------------------------------------------------------------------- */
+.post-card {
+  background: #fff;
+  border-radius: 14px;
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.post-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.07);
+}
+
+.post-card-img-wrap {
+  position: relative;
+  width: 100%;
+  height: 180px;
+  background: #f1f5f9;
+  overflow: hidden;
+}
+
+.post-card-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.post-card:hover .post-card-img-wrap img {
+  transform: scale(1.03);
+}
+
+.status-badge {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.25rem 0.6rem;
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.status-published { background: #dcfce7; color: #166534; border: 1px solid #bbf7d0; }
+.status-scheduled { background: #e0f2fe; color: #075985; border: 1px solid #bae6fd; }
+.status-in_review { background: #fef3c7; color: #92400e; border: 1px solid #fde68a; }
+.status-draft { background: #f1f5f9; color: #475569; border: 1px solid #cbd5e1; }
+.status-rejected { background: #fee2e2; color: #991b1b; border: 1px solid #fecaca; }
+
+.platform-pill {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  color: #fff;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+}
+
+.platform-instagram { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); }
+.platform-facebook { background: #1877f2; }
+.platform-x { background: #000000; }
+.platform-tiktok { background: #010101; }
+.platform-linkedin { background: #0a66c2; }
+.platform-youtube { background: #ff0000; }
+
+/* --------------------------------------------------------------------------
+   Live Feed Preview Cards (Instagram, Facebook, X, etc.)
+   -------------------------------------------------------------------------- */
+.social-preview-card {
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  max-width: 440px;
+  margin: 0 auto;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+  font-size: 0.85rem;
+  overflow: hidden;
+}
+
+.preview-header {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.75rem 1rem;
+}
+
+.preview-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--accent-gold);
+}
+
+.preview-media-box {
+  width: 100%;
+  aspect-ratio: 16/9;
+  background: #e2e8f0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.preview-media-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.preview-actions {
+  padding: 0.65rem 1rem;
+  display: flex;
+  gap: 1.25rem;
+  font-size: 1.15rem;
+  color: #334155;
+}
+
+.preview-caption-box {
+  padding: 0 1rem 1rem;
+  line-height: 1.45;
+}
+
+/* --------------------------------------------------------------------------
+   Workflow Pipeline Tracker
+   -------------------------------------------------------------------------- */
+.workflow-stepper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  margin: 1.5rem 0 2rem;
+}
+
+.workflow-stepper::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 5%;
+  right: 5%;
+  height: 3px;
+  background: #e2e8f0;
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+.workflow-step {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  background: #fff;
+  padding: 0 0.75rem;
+}
+
+.step-node {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #f1f5f9;
+  border: 3px solid #cbd5e1;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 0.5rem;
+  font-weight: 700;
+  transition: all 0.3s ease;
+}
+
+.workflow-step.active .step-node {
+  background: #0f172a;
+  border-color: var(--accent-gold);
+  color: #fef08a;
+  box-shadow: 0 0 0 5px rgba(197, 155, 39, 0.2);
+}
+
+.workflow-step.completed .step-node {
+  background: #10b981;
+  border-color: #10b981;
+  color: #ffffff;
+}
+
+/* --------------------------------------------------------------------------
+   Calendar View
+   -------------------------------------------------------------------------- */
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 1px;
+  background-color: var(--border-color);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.calendar-header-day {
+  background: #f8fafc;
+  padding: 0.75rem;
+  text-align: center;
+  font-weight: 600;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.calendar-cell {
+  background: #fff;
+  min-height: 120px;
+  padding: 0.5rem;
+  position: relative;
+  transition: background 0.15s;
+}
+
+.calendar-cell:hover {
+  background: #fcfcfd;
+}
+
+.calendar-cell.today {
+  background: #fefce8;
+}
+
+.calendar-date-number {
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: #334155;
+  margin-bottom: 0.35rem;
+}
+
+.calendar-post-badge {
+  font-size: 0.72rem;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  margin-bottom: 0.25rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+  display: block;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+/* --------------------------------------------------------------------------
+   Luxury & Gold Accents
+   -------------------------------------------------------------------------- */
+.btn-gold {
+  background: linear-gradient(135deg, #c59b27 0%, #d4af37 100%);
+  color: #0f172a;
+  font-weight: 600;
+  border: none;
+  box-shadow: 0 2px 6px rgba(197, 155, 39, 0.25);
+  transition: all 0.2s;
+}
+
+.btn-gold:hover, .btn-gold:focus {
+  background: linear-gradient(135deg, #b38b1f 0%, #c59b27 100%);
+  color: #000;
+  box-shadow: 0 4px 12px rgba(197, 155, 39, 0.4);
+  transform: translateY(-1px);
+}
+
+.btn-navy {
+  background: #0f172a;
+  color: #fff;
+  border: 1px solid #0f172a;
+  font-weight: 600;
+}
+
+.btn-navy:hover {
+  background: #1e293b;
+  color: #fef08a;
+  border-color: #1e293b;
+}
+
+.card-luxury {
+  border-radius: 14px;
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+}
+
+.card-luxury .card-header {
+  background: #ffffff;
+  border-bottom: 1px solid #f1f5f9;
+  padding: 1.15rem 1.35rem;
+  font-weight: 600;
+}
+
+/* --------------------------------------------------------------------------
+   Responsive & Mobile Handling
+   -------------------------------------------------------------------------- */
+@media (max-width: 992px) {
+  .sidebar {
+    transform: translateX(-100%);
+  }
+  .sidebar.show {
+    transform: translateX(0);
+  }
+  .main-content {
+    margin-left: 0;
+  }
+}
+
+/* Toast Container positioning */
+.toast-container {
+  z-index: 1090;
+}

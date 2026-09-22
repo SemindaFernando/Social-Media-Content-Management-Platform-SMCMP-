@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Approval Workflow | Grand Azure Hotel SMCMP</title>
+  
+  <!-- Google Fonts & Bootstrap 5 & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/custom.css">
+</head>
+<body>
+
+  <div class="app-wrapper">
+    
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <a href="index.html" class="sidebar-brand">
+        <div class="brand-icon"><i class="bi bi-building"></i></div>
+        <div>
+          <div class="brand-title hotel-heading">Grand Azure</div>
+          <div class="brand-subtitle">HOTEL SMCMP</div>
+        </div>
+      </a>
+
+      <ul class="sidebar-menu">
+        <li class="menu-category">Content Management</li>
+        <li class="nav-item">
+          <a href="dashboard.html" class="nav-link"><i class="bi bi-grid-1x2-fill"></i><span>Dashboard</span></a>
+        </li>
+        <li class="nav-item">
+          <a href="create-post.html" class="nav-link"><i class="bi bi-plus-square-fill"></i><span>Create Post & AI</span></a>
+        </li>
+        <li class="nav-item">
+          <a href="approval-workflow.html" class="nav-link active"><i class="bi bi-diagram-3-fill"></i><span>Approval Workflow</span></a>
+        </li>
+        <li class="nav-item">
+          <a href="calendar.html" class="nav-link"><i class="bi bi-calendar3"></i><span>Content Calendar</span></a>
+        </li>
+
+        <li class="menu-category">Marketing & Strategy</li>
+        <li class="nav-item">
+          <a href="campaigns.html" class="nav-link"><i class="bi bi-bullseye"></i><span>Campaigns</span></a>
+        </li>
+        <li class="nav-item">
+          <a href="analytics.html" class="nav-link"><i class="bi bi-graph-up-arrow"></i><span>Analytics Reports</span></a>
+        </li>
+        <li class="nav-item">
+          <a href="strategy.html" class="nav-link"><i class="bi bi-lightbulb-fill"></i><span>Strategy & Best Times</span></a>
+        </li>
+
+        <li class="menu-category">Governance & Administration</li>
+        <li class="nav-item" data-role-guard="admin">
+          <a href="users.html" class="nav-link"><i class="bi bi-people-fill"></i><span>User Management</span></a>
+        </li>
+        <li class="nav-item">
+          <a href="privacy-compliance.html" class="nav-link"><i class="bi bi-shield-check"></i><span>Privacy & Consent</span></a>
+        </li>
+      </ul>
+
+      <!-- Current User Card -->
+      <div class="sidebar-user-card">
+        <div class="d-flex align-items-center gap-2 mb-2">
+          <img src="" class="current-user-avatar rounded-circle" width="38" height="38" alt="User">
+          <div class="overflow-hidden">
+            <div class="current-user-name fw-bold small text-white text-truncate">User Name</div>
+            <span class="current-user-role role-badge">Role</span>
+          </div>
+        </div>
+        <div class="d-flex justify-content-between align-items-center mt-2 pt-2 border-top border-secondary">
+          <a href="login.html" class="text-light opacity-75 small text-decoration-none"><i class="bi bi-arrow-left-right me-1"></i>Switch</a>
+          <a href="login.html" class="text-danger small text-decoration-none"><i class="bi bi-box-arrow-right me-1"></i>Logout</a>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <div class="main-content">
+      
+      <!-- Top Navbar -->
+      <header class="top-navbar">
+        <div class="d-flex align-items-center gap-3">
+          <button class="btn btn-outline-secondary btn-sm d-lg-none" id="sidebarToggleBtn"><i class="bi bi-list fs-5"></i></button>
+          <div class="page-title-wrap">
+            <h1>Multi-Stage Approval Workflow</h1>
+            <p>Quality assurance, brand governance, and publication authorization pipeline</p>
+          </div>
+        </div>
+
+        <div class="d-flex align-items-center gap-3">
+          <!-- Quick Role Switcher -->
+          <div class="dropdown">
+            <button class="btn btn-sm btn-outline-secondary dropdown-toggle d-flex align-items-center gap-2" type="button" data-bs-toggle="dropdown">
+              <span class="current-user-role role-badge">Role</span>
+              <span class="d-none d-md-inline current-user-name">User</span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end shadow-sm">
+              <li><h6 class="dropdown-header">Switch Role Simulation</h6></li>
+              <li><a class="dropdown-item role-switch-item" href="#" data-role="Administrator"><i class="bi bi-shield-lock-fill text-purple me-2"></i>Administrator</a></li>
+              <li><a class="dropdown-item role-switch-item" href="#" data-role="Content Creator"><i class="bi bi-pencil-square text-primary me-2"></i>Content Creator</a></li>
+              <li><a class="dropdown-item role-switch-item" href="#" data-role="Content Approver"><i class="bi bi-check2-circle text-warning me-2"></i>Content Approver</a></li>
+            </ul>
+          </div>
+
+          <a href="create-post.html" class="btn btn-gold btn-sm"><i class="bi bi-plus-lg me-1"></i>Submit Post</a>
+        </div>
+      </header>
+
+      <!-- Main Body -->
+      <div class="p-4">
+        
+        <!-- Visual Workflow Pipeline Diagram Card -->
+        <div class="card card-luxury mb-4">
+          <div class="card-header bg-light d-flex justify-content-between align-items-center">
+            <span class="fw-bold"><i class="bi bi-diagram-3 me-2 text-primary"></i>Standard Operating Approval Pipeline</span>
+            <span class="badge bg-secondary">ISO Hospitality Standard</span>
+          </div>
+          <div class="card-body px-4 py-3">
+            
+            <div class="workflow-stepper">
+              <!-- Step 1: Content Creator -->
+              <div class="workflow-step completed">
+                <div class="step-node"><i class="bi bi-pencil-fill"></i></div>
+                <div class="fw-bold small">1. Content Creator</div>
+                <small class="text-muted">Drafts & selects platforms</small>
+              </div>
+
+              <!-- Step 2: Approver -->
+              <div class="workflow-step active">
+                <div class="step-node"><i class="bi bi-shield-check"></i></div>
+                <div class="fw-bold small">2. Content Approver</div>
+                <small class="text-muted">Review, edits & compliance</small>
+              </div>
+
+              <!-- Step 3: Published -->
+              <div class="workflow-step">
+                <div class="step-node"><i class="bi bi-send-fill"></i></div>
+                <div class="fw-bold small">3. Scheduled / Published</div>
+                <small class="text-muted">Broadcast to hotel socials</small>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Pending Approval Queue -->
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <div>
+            <h4 class="fw-bold m-0 hotel-heading">Pending Approver Queue</h4>
+            <small class="text-muted">Posts submitted by Content Creators awaiting review by Elena Rostova (Approver) or Victoria Sterling (Admin)</small>
+          </div>
+          <span class="badge bg-warning text-dark fs-6" id="pendingCountBadge">0 Pending</span>
+        </div>
+
+        <div id="pendingQueueContainer" class="row g-4 mb-5">
+          <!-- Dynamically populated -->
+        </div>
+
+        <!-- Approval Audit Trail & History Log -->
+        <div class="card card-luxury">
+          <div class="card-header bg-light d-flex justify-content-between align-items-center">
+            <span class="fw-bold"><i class="bi bi-clock-history me-2 text-dark"></i>Recent Workflow Audit Trail & Logs</span>
+            <button class="btn btn-sm btn-outline-secondary" onclick="renderHistoryTable()"><i class="bi bi-arrow-clockwise me-1"></i>Refresh</button>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+              <thead class="table-light">
+                <tr>
+                  <th>Post Headline</th>
+                  <th>Submitted By</th>
+                  <th>Target Channels</th>
+                  <th>Scheduled For</th>
+                  <th>Status</th>
+                  <th>Approver Feedback / Notes</th>
+                </tr>
+              </thead>
+              <tbody id="historyTableBody">
+                <!-- Dynamically populated -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Review / Request Revision Modal -->
+  <div class="modal fade" id="reviewModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content border-0 shadow-lg">
+        <div class="modal-header">
+          <h5 class="modal-title fw-bold">Review & Feedback Action</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body p-4">
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Post Title</label>
+            <input type="text" id="reviewModalPostTitle" class="form-control" readonly>
+          </div>
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Feedback / Editorial Notes for Creator <span class="text-danger">*</span></label>
+            <textarea id="reviewNotesInput" class="form-control" rows="4" placeholder="Specify required changes, photo updates, compliance clarifications, or reasons for approval/rejection..."></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-danger btn-sm" id="btnConfirmReject">
+            <i class="bi bi-x-circle me-1"></i>Request Revision / Reject
+          </button>
+          <button type="button" class="btn btn-success btn-sm" id="btnConfirmApprove">
+            <i class="bi bi-check-circle me-1"></i>Approve & Schedule
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/app.js"></script>
+  <script type="module" src="js/firebase-config.js"></script>
+
+  <script>
+    let activeReviewPostId = null;
+
+    document.addEventListener("DOMContentLoaded", () => {
+      renderPendingQueue();
+      renderHistoryTable();
+      setupModalActions();
+    });
+
+    function renderPendingQueue() {
+      const pendingPosts = DataStore.getPosts({ status: "in_review" });
+      const container = document.getElementById("pendingQueueContainer");
+      const countBadge = document.getElementById("pendingCountBadge");
+      container.innerHTML = "";
+
+      countBadge.textContent = `${pendingPosts.length} Pending Review`;
+
+      const isApprover = AuthService.isContentApprover();
+      const isCreator = AuthService.getCurrentUser().role === "Content Creator";
+
+      if (pendingPosts.length === 0) {
+        container.innerHTML = `
+          <div class="col-12 text-center py-5 bg-white rounded-4 border">
+            <div class="stat-icon success mx-auto mb-3"><i class="bi bi-check2-all"></i></div>
+            <h5 class="fw-bold">All caught up!</h5>
+            <p class="text-muted small">There are currently no hotel posts waiting in the review queue.</p>
+            <a href="create-post.html" class="btn btn-sm btn-navy"><i class="bi bi-plus-circle me-1"></i>Submit New Post for Review</a>
+          </div>
+        `;
+        return;
+      }
+
+      pendingPosts.forEach(post => {
+        const platformBadges = App.getPlatformBadges(post.platforms);
+        const formattedDate = App.formatDate(post.scheduledDate);
+
+        const actionButtons = isApprover ? `
+          <button class="btn btn-sm btn-success flex-grow-1" onclick="quickApprove('${post.id}')">
+            <i class="bi bi-check-lg me-1"></i>Approve
+          </button>
+          <button class="btn btn-sm btn-outline-warning text-dark flex-grow-1" onclick="openReviewModal('${post.id}')">
+            <i class="bi bi-chat-dots me-1"></i>Review / Notes
+          </button>
+        ` : `
+          <span class="badge bg-secondary-subtle text-secondary py-2 flex-grow-1 text-center border">
+            <i class="bi bi-lock-fill me-1"></i>Member 2 (Creator) Cannot Approve
+          </span>
+        `;
+
+        const cardHtml = `
+          <div class="col-lg-6">
+            <div class="card card-luxury h-100 border-warning border-2">
+              <div class="row g-0 h-100">
+                <div class="col-sm-5 position-relative">
+                  <img src="${post.image}" class="img-fluid rounded-start h-100 w-100" style="object-fit:cover; min-height: 200px;" alt="">
+                  <div class="position-absolute top-0 start-0 m-2">
+                    <span class="status-badge status-in_review"><i class="bi bi-hourglass-split me-1"></i>In Review</span>
+                  </div>
+                </div>
+                <div class="col-sm-7 p-3 d-flex flex-column justify-content-between">
+                  <div>
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                      <small class="text-muted"><i class="bi bi-person me-1"></i>${post.author}</small>
+                      <small class="text-muted">${formattedDate}</small>
+                    </div>
+                    <h6 class="fw-bold mb-2 text-dark">${post.title}</h6>
+                    <div class="p-2 bg-light rounded small text-secondary mb-2" style="max-height: 90px; overflow-y: auto;">
+                      ${post.caption}
+                    </div>
+                    <div class="mb-3">
+                      <small class="text-muted d-block small mb-1">Target Platforms:</small>
+                      ${platformBadges}
+                    </div>
+                  </div>
+
+                  <div class="d-flex gap-2 pt-2 border-top">
+                    ${actionButtons}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+        container.insertAdjacentHTML("beforeend", cardHtml);
+      });
+    }
+
+    function renderHistoryTable() {
+      const allPosts = DataStore.getPosts();
+      const historyBody = document.getElementById("historyTableBody");
+      historyBody.innerHTML = "";
+
+      allPosts.slice(0, 10).forEach(post => {
+        const platformBadges = App.getPlatformBadges(post.platforms);
+        const statusBadge = App.getStatusBadge(post.status);
+        const formattedDate = App.formatDate(post.scheduledDate);
+
+        const row = `
+          <tr>
+            <td>
+              <div class="fw-bold text-dark">${post.title}</div>
+            </td>
+            <td><small class="text-muted">${post.author}</small></td>
+            <td>${platformBadges}</td>
+            <td><small class="text-muted">${formattedDate}</small></td>
+            <td>${statusBadge}</td>
+            <td>
+              <small class="text-secondary">${post.approvalNotes || '<span class="text-muted opacity-50">Standard flow</span>'}</small>
+            </td>
+          </tr>
+        `;
+        historyBody.insertAdjacentHTML("beforeend", row);
+      });
+    }
+
+    async function quickApprove(id) {
+      if (!AuthService.isContentApprover()) {
+        alert("Policy Violation: Only Member 3 (Content Approver) or Member 1 (Admin) can approve posts.");
+        return;
+      }
+      await API.reviewPost(id, "approve", "Approved via Quick Approval.");
+      App.showToast("Post approved and scheduled for broadcast!");
+      renderPendingQueue();
+      renderHistoryTable();
+    }
+
+    function openReviewModal(id) {
+      if (!AuthService.isContentApprover()) {
+        alert("Only Member 3 (Content Approver) or Member 1 (Admin) can review posts.");
+        return;
+      }
+      const post = DataStore.getPostById(id);
+      if (!post) return;
+      activeReviewPostId = id;
+      document.getElementById("reviewModalPostTitle").value = post.title;
+      document.getElementById("reviewNotesInput").value = post.approvalNotes || "";
+      new bootstrap.Modal(document.getElementById("reviewModal")).show();
+    }
+
+    function setupModalActions() {
+      document.getElementById("btnConfirmApprove").addEventListener("click", async () => {
+        if (!activeReviewPostId) return;
+        if (!AuthService.isContentApprover()) {
+          alert("Policy Violation: Member 2 (Content Creator) cannot approve posts.");
+          return;
+        }
+        const notes = document.getElementById("reviewNotesInput").value.trim() || "Approved with feedback.";
+        await API.reviewPost(activeReviewPostId, "approve", notes);
+        App.showToast("Post approved and moved to Scheduled!");
+        bootstrap.Modal.getInstance(document.getElementById("reviewModal")).hide();
+        renderPendingQueue();
+        renderHistoryTable();
+      });
+
+      document.getElementById("btnConfirmReject").addEventListener("click", async () => {
+        if (!activeReviewPostId) return;
+        if (!AuthService.isContentApprover()) {
+          alert("Policy Violation: Member 2 (Content Creator) cannot reject/review posts.");
+          return;
+        }
+        const notes = document.getElementById("reviewNotesInput").value.trim();
+        if (!notes) {
+          alert("Please enter feedback notes explaining what changes are needed.");
+          return;
+        }
+        await API.reviewPost(activeReviewPostId, "reject", notes);
+        App.showToast("Post sent back to Content Creator for revision.", "warning");
+        bootstrap.Modal.getInstance(document.getElementById("reviewModal")).hide();
+        renderPendingQueue();
+        renderHistoryTable();
+      });
+    }
+  </script>
+</body>
+</html>

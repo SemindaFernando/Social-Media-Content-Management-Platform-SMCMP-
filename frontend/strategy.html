@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Social Media Strategy & Best Practices | Grand Azure Hotel SMCMP</title>
+  
+  <!-- Google Fonts & Bootstrap 5 & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/custom.css">
+</head>
+<body>
+
+  <div class="app-wrapper">
+    
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <a href="index.html" class="sidebar-brand">
+        <div class="brand-icon"><i class="bi bi-building"></i></div>
+        <div>
+          <div class="brand-title hotel-heading">Grand Azure</div>
+          <div class="brand-subtitle">HOTEL SMCMP</div>
+        </div>
+      </a>
+
+      <ul class="sidebar-menu">
+        <li class="menu-category">Content Management</li>
+        <li class="nav-item">
+          <a href="dashboard.html" class="nav-link"><i class="bi bi-grid-1x2-fill"></i><span>Dashboard</span></a>
+        </li>
+        <li class="nav-item">
+          <a href="create-post.html" class="nav-link"><i class="bi bi-plus-square-fill"></i><span>Create Post & AI</span></a>
+        </li>
+        <li class="nav-item">
+          <a href="approval-workflow.html" class="nav-link"><i class="bi bi-diagram-3-fill"></i><span>Approval Workflow</span></a>
+        </li>
+        <li class="nav-item">
+          <a href="calendar.html" class="nav-link"><i class="bi bi-calendar3"></i><span>Content Calendar</span></a>
+        </li>
+
+        <li class="menu-category">Marketing & Strategy</li>
+        <li class="nav-item">
+          <a href="campaigns.html" class="nav-link"><i class="bi bi-bullseye"></i><span>Campaigns</span></a>
+        </li>
+        <li class="nav-item">
+          <a href="analytics.html" class="nav-link"><i class="bi bi-graph-up-arrow"></i><span>Analytics Reports</span></a>
+        </li>
+        <li class="nav-item">
+          <a href="strategy.html" class="nav-link active"><i class="bi bi-lightbulb-fill"></i><span>Strategy & Best Times</span></a>
+        </li>
+
+        <li class="menu-category">Governance & Security</li>
+        <li class="nav-item">
+          <a href="privacy-compliance.html" class="nav-link"><i class="bi bi-shield-check"></i><span>Privacy & Consent</span></a>
+        </li>
+      </ul>
+
+      <!-- Current User Card -->
+      <div class="sidebar-user-card">
+        <div class="d-flex align-items-center gap-2 mb-2">
+          <img src="" class="current-user-avatar rounded-circle" width="38" height="38" alt="User">
+          <div class="overflow-hidden">
+            <div class="current-user-name fw-bold small text-white text-truncate">User Name</div>
+            <span class="current-user-role role-badge">Role</span>
+          </div>
+        </div>
+        <div class="d-flex justify-content-between align-items-center mt-2 pt-2 border-top border-secondary">
+          <a href="login.html" class="text-light opacity-75 small text-decoration-none"><i class="bi bi-arrow-left-right me-1"></i>Switch</a>
+          <a href="login.html" class="text-danger small text-decoration-none"><i class="bi bi-box-arrow-right me-1"></i>Logout</a>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <div class="main-content">
+      
+      <!-- Top Navbar -->
+      <header class="top-navbar">
+        <div class="d-flex align-items-center gap-3">
+          <button class="btn btn-outline-secondary btn-sm d-lg-none" id="sidebarToggleBtn"><i class="bi bi-list fs-5"></i></button>
+          <div class="page-title-wrap">
+            <h1>Hotel Social Media Strategy Guide</h1>
+            <p>Industry best practices, optimal posting schedules, and guest personas</p>
+          </div>
+        </div>
+
+        <div class="d-flex align-items-center gap-2">
+          <a href="create-post.html" class="btn btn-gold btn-sm"><i class="bi bi-pencil-square me-1"></i>Apply in Post Studio</a>
+        </div>
+      </header>
+
+      <!-- Main Body -->
+      <div class="p-4">
+        
+        <!-- Section 1: Best Posting Times by Platform -->
+        <div class="card card-luxury mb-4">
+          <div class="card-header bg-light d-flex justify-content-between align-items-center">
+            <span class="fw-bold"><i class="bi bi-clock-history me-2 text-primary"></i>1. Optimal Posting Schedules for Luxury Hospitality</span>
+            <span class="badge bg-primary">Hospitality Benchmarks</span>
+          </div>
+          <div class="card-body p-4">
+            <div class="row g-3" id="postingTimesContainer">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 2: Curated Hashtag Banks with 1-Click Copy -->
+        <div class="card card-luxury mb-4">
+          <div class="card-header bg-light d-flex justify-content-between align-items-center">
+            <span class="fw-bold"><i class="bi bi-hash me-2 text-warning"></i>2. Grand Azure Curated Hashtag Bank</span>
+            <span class="badge bg-secondary">Click to Copy Set</span>
+          </div>
+          <div class="card-body p-4">
+            <div class="row g-3" id="hashtagBanksContainer">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 3: Target Guest Personas -->
+        <div class="card card-luxury mb-4">
+          <div class="card-header bg-light d-flex justify-content-between align-items-center">
+            <span class="fw-bold"><i class="bi bi-person-badge me-2 text-success"></i>3. Key Hotel Guest Buyer Personas</span>
+            <span class="badge bg-success">Audience Targeting</span>
+          </div>
+          <div class="card-body p-4">
+            <div class="row g-4" id="personasContainer">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 4: Content Pillars & Strategic Goals -->
+        <div class="row g-4">
+          
+          <div class="col-lg-6">
+            <div class="card card-luxury h-100">
+              <div class="card-header bg-light">
+                <span class="fw-bold"><i class="bi bi-pie-chart-fill me-2 text-primary"></i>4. Content Pillars Allocation</span>
+              </div>
+              <div class="card-body p-4">
+                <div class="mb-3">
+                  <div class="d-flex justify-content-between small fw-bold mb-1">
+                    <span>Aesthetic Experiences & Suites (Visual Luxury)</span>
+                    <span>50%</span>
+                  </div>
+                  <div class="progress" style="height: 10px;">
+                    <div class="progress-bar bg-primary" style="width: 50%;"></div>
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <div class="d-flex justify-content-between small fw-bold mb-1">
+                    <span>Gastronomy, Chef Secrets & Mixology</span>
+                    <span>20%</span>
+                  </div>
+                  <div class="progress" style="height: 10px;">
+                    <div class="progress-bar bg-warning" style="width: 20%;"></div>
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <div class="d-flex justify-content-between small fw-bold mb-1">
+                    <span>Direct Booking Offers & Seasonal Flash Sales</span>
+                    <span>15%</span>
+                  </div>
+                  <div class="progress" style="height: 10px;">
+                    <div class="progress-bar bg-danger" style="width: 15%;"></div>
+                  </div>
+                </div>
+
+                <div class="mb-2">
+                  <div class="d-flex justify-content-between small fw-bold mb-1">
+                    <span>Sustainability, Staff Spotlights & CSR</span>
+                    <span>15%</span>
+                  </div>
+                  <div class="progress" style="height: 10px;">
+                    <div class="progress-bar bg-success" style="width: 15%;"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="card card-luxury h-100">
+              <div class="card-header bg-light">
+                <span class="fw-bold"><i class="bi bi-flag-fill me-2 text-warning"></i>5. 2026 Strategic Objectives & KPIs</span>
+              </div>
+              <div class="card-body p-4">
+                <ul class="list-unstyled mb-0 d-flex flex-column gap-3">
+                  <li class="d-flex gap-2">
+                    <i class="bi bi-check-circle-fill text-success fs-5"></i>
+                    <div>
+                      <b class="text-dark d-block">Direct Web Booking Conversions</b>
+                      <small class="text-muted">Achieve +20% year-over-year increase in direct reservations sourced from Instagram & TikTok bio links.</small>
+                    </div>
+                  </li>
+                  <li class="d-flex gap-2">
+                    <i class="bi bi-check-circle-fill text-success fs-5"></i>
+                    <div>
+                      <b class="text-dark d-block">Brand Engagement Threshold</b>
+                      <small class="text-muted">Maintain minimum 8.0% engagement rate across all visual reel and carousel assets.</small>
+                    </div>
+                  </li>
+                  <li class="d-flex gap-2">
+                    <i class="bi bi-check-circle-fill text-success fs-5"></i>
+                    <div>
+                      <b class="text-dark d-block">CSR & Eco-Hospitality Advocacy</b>
+                      <small class="text-muted">Position Grand Azure as the premier eco-certified luxury hotel through bi-weekly green stories.</small>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/app.js"></script>
+  <script type="module" src="js/firebase-config.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      renderPostingTimes();
+      renderHashtagBanks();
+      renderPersonas();
+    });
+
+    function renderPostingTimes() {
+      const list = INITIAL_HOTEL_DATA.strategy.bestPostingTimes;
+      const container = document.getElementById("postingTimesContainer");
+      container.innerHTML = "";
+
+      list.forEach(item => {
+        const col = `
+          <div class="col-md-6 col-lg-4">
+            <div class="p-3 bg-light rounded-3 border h-100">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <span class="fw-bold text-dark fs-6">${item.platform}</span>
+                <span class="badge bg-dark">${item.bestDays}</span>
+              </div>
+              <div class="small fw-semibold text-primary mb-1"><i class="bi bi-clock me-1"></i>${item.bestTimes}</div>
+              <p class="text-muted small m-0">${item.tip}</p>
+            </div>
+          </div>
+        `;
+        container.insertAdjacentHTML("beforeend", col);
+      });
+    }
+
+    function renderHashtagBanks() {
+      const list = INITIAL_HOTEL_DATA.strategy.hashtagLibraries;
+      const container = document.getElementById("hashtagBanksContainer");
+      container.innerHTML = "";
+
+      list.forEach(lib => {
+        const tagsString = lib.tags.join(" ");
+        const col = `
+          <div class="col-md-6 col-lg-4">
+            <div class="p-3 bg-light rounded-3 border h-100 d-flex flex-column justify-content-between">
+              <div>
+                <h6 class="fw-bold text-dark mb-2">${lib.category}</h6>
+                <div class="d-flex flex-wrap gap-1 mb-3">
+                  ${lib.tags.map(t => `<span class="badge bg-white text-secondary border small">${t}</span>`).join("")}
+                </div>
+              </div>
+              <button class="btn btn-sm btn-outline-secondary w-100" onclick="copyHashtags('${tagsString}')">
+                <i class="bi bi-clipboard me-1"></i>Copy Hashtag Set
+              </button>
+            </div>
+          </div>
+        `;
+        container.insertAdjacentHTML("beforeend", col);
+      });
+    }
+
+    function renderPersonas() {
+      const list = INITIAL_HOTEL_DATA.strategy.buyerPersonas;
+      const container = document.getElementById("personasContainer");
+      container.innerHTML = "";
+
+      list.forEach(p => {
+        const col = `
+          <div class="col-lg-4">
+            <div class="p-4 bg-light rounded-3 border h-100">
+              <div class="stat-icon primary mb-3"><i class="bi bi-person-heart"></i></div>
+              <h5 class="fw-bold text-dark mb-1">${p.name}</h5>
+              <div class="badge bg-secondary mb-3">${p.demographics}</div>
+              <div class="small mb-2"><b>Key Interests:</b> <span class="text-muted">${p.interests}</span></div>
+              <div class="small mb-2"><b>Preferred Channels:</b> <span class="badge bg-dark">${p.preferredPlatforms.join(", ")}</span></div>
+              <div class="small text-muted border-top pt-2 mt-2"><b>Content Angle:</b> ${p.contentFocus}</div>
+            </div>
+          </div>
+        `;
+        container.insertAdjacentHTML("beforeend", col);
+      });
+    }
+
+    function copyHashtags(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        App.showToast("Hashtag set copied to clipboard!");
+      });
+    }
+  </script>
+</body>
+</html>

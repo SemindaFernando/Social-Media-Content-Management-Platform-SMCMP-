@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Content Creation Studio & AI | Grand Azure Hotel SMCMP</title>
+  
+  <!-- Google Fonts & Bootstrap 5 & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/custom.css">
+
+  <style>
+    .preset-img-thumbnail {
+      width: 76px;
+      height: 52px;
+      object-fit: cover;
+      border-radius: 8px;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: all 0.2s;
+    }
+    .preset-img-thumbnail:hover, .preset-img-thumbnail.selected {
+      border-color: var(--accent-gold);
+      transform: scale(1.05);
+    }
+    .platform-checkbox-label {
+      cursor: pointer;
+      user-select: none;
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 0.5rem 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.2s;
+    }
+    .btn-check:checked + .platform-checkbox-label {
+      background-color: #0f172a;
+      color: #fff;
+      border-color: #0f172a;
+    }
+    .hashtag-badge {
+      cursor: pointer;
+      font-weight: 500;
+      transition: all 0.15s;
+    }
+    .hashtag-badge:hover {
+      background-color: #0f172a !important;
+      color: #fef08a !important;
+      transform: translateY(-1px);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-wrapper">
+    
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <a href="index.html" class="sidebar-brand">
+        <div class="brand-icon"><i class="bi bi-building"></i></div>
+        <div>
+          <div class="brand-title hotel-heading">Grand Azure</div>
+          <div class="brand-subtitle">HOTEL SMCMP</div>
+        </div>
+      </a>
+
+      <ul class="sidebar-menu">
+        <li class="menu-category">Content Management</li>
+        <li class="nav-item">
+          <a href="dashboard.html" class="nav-link"><i class="bi bi-grid-1x2-fill"></i><span>Dashboard</span></a>
+        </li>
+        <li class="nav-item">
+          <a href="create-post.html" class="nav-link active"><i class="bi bi-plus-square-fill"></i><span>Create Post & AI</span></a>
+        </li>
+        <li class="nav-item">
+          <a href="approval-workflow.html" class="nav-link"><i class="bi bi-diagram-3-fill"></i><span>Approval Workflow</span></a>
+        </li>
+        <li class="nav-item">
+          <a href="calendar.html" class="nav-link"><i class="bi bi-calendar3"></i><span>Content Calendar</span></a>
+        </li>
+
+        <li class="menu-category">Marketing & Strategy</li>
+        <li class="nav-item">
+          <a href="campaigns.html" class="nav-link"><i class="bi bi-bullseye"></i><span>Campaigns</span></a>
+        </li>
+        <li class="nav-item">
+          <a href="analytics.html" class="nav-link"><i class="bi bi-graph-up-arrow"></i><span>Analytics Reports</span></a>
+        </li>
+        <li class="nav-item">
+          <a href="strategy.html" class="nav-link"><i class="bi bi-lightbulb-fill"></i><span>Strategy & Best Times</span></a>
+        </li>
+
+        <li class="menu-category">Governance & Administration</li>
+        <li class="nav-item" data-role-guard="admin">
+          <a href="users.html" class="nav-link"><i class="bi bi-people-fill"></i><span>User Management</span></a>
+        </li>
+        <li class="nav-item">
+          <a href="privacy-compliance.html" class="nav-link"><i class="bi bi-shield-check"></i><span>Privacy & Consent</span></a>
+        </li>
+      </ul>
+
+      <!-- Current User Card -->
+      <div class="sidebar-user-card">
+        <div class="d-flex align-items-center gap-2 mb-2">
+          <img src="" class="current-user-avatar rounded-circle" width="38" height="38" alt="User">
+          <div class="overflow-hidden">
+            <div class="current-user-name fw-bold small text-white text-truncate">User Name</div>
+            <span class="current-user-role role-badge">Role</span>
+          </div>
+        </div>
+        <div class="d-flex justify-content-between align-items-center mt-2 pt-2 border-top border-secondary">
+          <a href="login.html" class="text-light opacity-75 small text-decoration-none"><i class="bi bi-arrow-left-right me-1"></i>Switch</a>
+          <a href="login.html" class="text-danger small text-decoration-none"><i class="bi bi-box-arrow-right me-1"></i>Logout</a>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <div class="main-content">
+      
+      <!-- Top Navbar -->
+      <header class="top-navbar">
+        <div class="d-flex align-items-center gap-3">
+          <button class="btn btn-outline-secondary btn-sm d-lg-none" id="sidebarToggleBtn"><i class="bi bi-list fs-5"></i></button>
+          <div class="page-title-wrap">
+            <h1 id="pageHeadingTitle">Content Creation Studio</h1>
+            <p>Compose, schedule, and preview social media posts with AI caption assistance</p>
+          </div>
+        </div>
+
+        <div class="d-flex align-items-center gap-2">
+          <a href="dashboard.html" class="btn btn-outline-secondary btn-sm"><i class="bi bi-arrow-left me-1"></i>Back to Dashboard</a>
+        </div>
+      </header>
+
+      <!-- Main Creation Form & Live Preview -->
+      <div class="p-4">
+        <div class="row g-4">
+          
+          <!-- Left Column: Form & AI Controls -->
+          <div class="col-lg-7">
+            
+            <!-- AI Assistant Tool Card -->
+            <div class="card card-luxury mb-4 border-warning shadow-sm">
+              <div class="card-header bg-warning bg-opacity-10 d-flex justify-content-between align-items-center">
+                <span class="fw-bold text-dark"><i class="bi bi-magic me-2 text-warning"></i>Bonus Feature: AI Hospitality Caption Assistant</span>
+                <span class="badge bg-warning text-dark">Gemini Simulator</span>
+              </div>
+              <div class="card-body p-3">
+                <div class="row g-2 mb-2">
+                  <div class="col-md-5">
+                    <label class="form-label small text-muted mb-1">Select Hotel Theme / Topic</label>
+                    <select id="aiTopicSelect" class="form-select form-select-sm">
+                      <option value="pool">Infinity Pool & Sunset Serenity</option>
+                      <option value="dining">Michelin Fine Dining & Seafood</option>
+                      <option value="spa">Thermal Spa & Wellness Massage</option>
+                      <option value="suite">Presidential Penthouse Suite Tour</option>
+                      <option value="wedding">Grand Ballroom Weddings</option>
+                      <option value="eco">Eco-Stay & Sustainable Luxury</option>
+                    </select>
+                  </div>
+                  <div class="col-md-4">
+                    <label class="form-label small text-muted mb-1">Tone of Voice</label>
+                    <select id="aiToneSelect" class="form-select form-select-sm">
+                      <option value="sophisticated">Sophisticated & Luxurious</option>
+                      <option value="relaxed">Relaxed & Vacation Mode</option>
+                      <option value="festive">Festive & Event Promotion</option>
+                    </select>
+                  </div>
+                  <div class="col-md-3 d-flex align-items-end">
+                    <button type="button" class="btn btn-navy btn-sm w-100" id="btnGenerateAI">
+                      <i class="bi bi-stars me-1"></i>Generate AI
+                    </button>
+                  </div>
+                </div>
+                <div class="d-flex align-items-center gap-1 flex-wrap mt-2 pt-2 border-top">
+                  <small class="text-muted fw-semibold me-1">Suggested Hashtags:</small>
+                  <div id="aiHashtagsContainer" class="d-flex gap-1 flex-wrap">
+                    <!-- Populated dynamically -->
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Main Post Form -->
+            <form id="postForm" class="card card-luxury">
+              <div class="card-body p-4">
+                
+                <!-- Post Title -->
+                <div class="mb-3">
+                  <label class="form-label fw-bold">Post Title / Internal Headline <span class="text-danger">*</span></label>
+                  <input type="text" id="postTitle" class="form-control" placeholder="e.g., Autumn Infinity Pool Sunset & Bellini Experience" required>
+                </div>
+
+                <!-- Target Social Media Platforms -->
+                <div class="mb-3">
+                  <label class="form-label fw-bold">Target Social Media Platforms <span class="text-danger">*</span></label>
+                  <div class="d-flex flex-wrap gap-2">
+                    
+                    <input type="checkbox" class="btn-check platform-cb" id="plat-instagram" value="instagram" checked>
+                    <label class="platform-checkbox-label" for="plat-instagram">
+                      <span class="platform-pill platform-instagram"><i class="fa-brands fa-instagram"></i></span> Instagram
+                    </label>
+
+                    <input type="checkbox" class="btn-check platform-cb" id="plat-facebook" value="facebook" checked>
+                    <label class="platform-checkbox-label" for="plat-facebook">
+                      <span class="platform-pill platform-facebook"><i class="fa-brands fa-facebook-f"></i></span> Facebook
+                    </label>
+
+                    <input type="checkbox" class="btn-check platform-cb" id="plat-tiktok" value="tiktok">
+                    <label class="platform-checkbox-label" for="plat-tiktok">
+                      <span class="platform-pill platform-tiktok"><i class="fa-brands fa-tiktok"></i></span> TikTok
+                    </label>
+
+                    <input type="checkbox" class="btn-check platform-cb" id="plat-linkedin" value="linkedin">
+                    <label class="platform-checkbox-label" for="plat-linkedin">
+                      <span class="platform-pill platform-linkedin"><i class="fa-brands fa-linkedin-in"></i></span> LinkedIn
+                    </label>
+
+                    <input type="checkbox" class="btn-check platform-cb" id="plat-x" value="x">
+                    <label class="platform-checkbox-label" for="plat-x">
+                      <span class="platform-pill platform-x"><i class="fa-brands fa-x-twitter"></i></span> X (Twitter)
+                    </label>
+
+                    <input type="checkbox" class="btn-check platform-cb" id="plat-youtube" value="youtube">
+                    <label class="platform-checkbox-label" for="plat-youtube">
+                      <span class="platform-pill platform-youtube"><i class="fa-brands fa-youtube"></i></span> YouTube
+                    </label>
+
+                  </div>
+                </div>
+
+                <!-- Post Caption Textarea -->
+                <div class="mb-3">
+                  <div class="d-flex justify-content-between align-items-center mb-1">
+                    <label class="form-label fw-bold mb-0">Caption & Hashtags <span class="text-danger">*</span></label>
+                    <small class="text-muted"><span id="charCount">0</span> characters</small>
+                  </div>
+                  <textarea id="postCaption" class="form-control" rows="5" placeholder="Write your luxury hotel caption or click 'Generate AI' above..." required></textarea>
+                </div>
+
+                <!-- Media Selection & Presets -->
+                <div class="mb-3">
+                  <label class="form-label fw-bold">Select Media / Image</label>
+                  <div class="mb-2">
+                    <input type="text" id="postImageUrl" class="form-control form-control-sm" placeholder="Paste custom image URL or select from hotel presets below">
+                  </div>
+                  
+                  <small class="text-muted d-block mb-2">Grand Azure 5-Star Photography Presets (Click to use):</small>
+                  <div id="presetsContainer" class="d-flex gap-2 flex-wrap">
+                    <!-- Populated dynamically -->
+                  </div>
+                </div>
+
+                <!-- Campaign & Schedule Row -->
+                <div class="row g-3 mb-4">
+                  <div class="col-md-6">
+                    <label class="form-label fw-semibold small">Linked Campaign</label>
+                    <select id="postCampaign" class="form-select form-select-sm">
+                      <option value="">-- None / General Hotel Post --</option>
+                      <!-- Dynamically populated -->
+                    </select>
+                  </div>
+
+                  <div class="col-md-3">
+                    <label class="form-label fw-semibold small">Scheduled Date</label>
+                    <input type="date" id="postDate" class="form-control form-control-sm">
+                  </div>
+
+                  <div class="col-md-3">
+                    <label class="form-label fw-semibold small">Scheduled Time</label>
+                    <input type="time" id="postTime" class="form-control form-control-sm" value="12:00">
+                  </div>
+                </div>
+
+                <!-- Action Submission Buttons -->
+                <div class="d-flex justify-content-between align-items-center pt-3 border-top flex-wrap gap-2">
+                  <button type="button" class="btn btn-outline-secondary" id="btnSaveDraft">
+                    <i class="bi bi-file-earmark me-1"></i>Save as Draft
+                  </button>
+
+                  <div class="d-flex gap-2">
+                    <button type="button" class="btn btn-warning text-dark fw-semibold" id="btnSubmitReview">
+                      <i class="bi bi-send-check me-1"></i>Submit for Approver Review
+                    </button>
+                    <button type="button" class="btn btn-gold fw-bold" id="btnSchedulePost">
+                      <i class="bi bi-calendar-plus me-1"></i>Schedule Post
+                    </button>
+                  </div>
+                </div>
+
+              </div>
+            </form>
+
+          </div>
+
+          <!-- Right Column: Live Multi-Platform Social Feed Preview -->
+          <div class="col-lg-5">
+            <div class="card card-luxury sticky-top" style="top: 90px;">
+              <div class="card-header bg-light d-flex justify-content-between align-items-center">
+                <span class="fw-bold"><i class="bi bi-eye-fill me-2 text-primary"></i>Live Social Feed Preview</span>
+                <span class="badge bg-dark">Real-Time Sync</span>
+              </div>
+              
+              <!-- Platform Switcher Tabs for Preview -->
+              <div class="px-3 pt-3">
+                <ul class="nav nav-pills nav-fill bg-light p-1 rounded" id="previewPlatformTabs">
+                  <li class="nav-item">
+                    <button class="nav-link active py-1 small" data-preview-target="instagram"><i class="fa-brands fa-instagram me-1"></i>Instagram</button>
+                  </li>
+                  <li class="nav-item">
+                    <button class="nav-link py-1 small" data-preview-target="facebook"><i class="fa-brands fa-facebook-f me-1"></i>Facebook</button>
+                  </li>
+                  <li class="nav-item">
+                    <button class="nav-link py-1 small" data-preview-target="tiktok"><i class="fa-brands fa-tiktok me-1"></i>TikTok</button>
+                  </li>
+                  <li class="nav-item">
+                    <button class="nav-link py-1 small" data-preview-target="x"><i class="fa-brands fa-x-twitter me-1"></i>X</button>
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Live Preview Card Rendering -->
+              <div class="p-3">
+                <div class="social-preview-card" id="livePreviewContainer">
+                  
+                  <!-- Feed Header -->
+                  <div class="preview-header">
+                    <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=150&auto=format&fit=crop&q=80" class="preview-avatar" alt="Avatar">
+                    <div class="flex-grow-1">
+                      <div class="fw-bold lh-1 text-dark" id="previewAccountName">grandazure.resort</div>
+                      <small class="text-muted" id="previewLocationName">Grand Azure Luxury Resort & Spa • Sponsored</small>
+                    </div>
+                    <i class="bi bi-three-dots text-muted"></i>
+                  </div>
+
+                  <!-- Feed Media -->
+                  <div class="preview-media-box">
+                    <img id="previewImage" src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800&auto=format&fit=crop&q=80" alt="Preview Media">
+                  </div>
+
+                  <!-- Feed Actions (Likes/Comments/Share) -->
+                  <div class="preview-actions">
+                    <i class="bi bi-heart"></i>
+                    <i class="bi bi-chat"></i>
+                    <i class="bi bi-send"></i>
+                    <i class="bi bi-bookmark ms-auto"></i>
+                  </div>
+
+                  <!-- Feed Caption Area -->
+                  <div class="preview-caption-box">
+                    <div class="fw-bold mb-1" id="previewTitleText">Post Title Headline</div>
+                    <div id="previewCaptionText" class="text-secondary" style="font-size: 0.82rem; white-space: pre-wrap;">Caption will appear here...</div>
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/ai-generator.js"></script>
+  <script src="js/app.js"></script>
+  <script type="module" src="js/firebase-config.js"></script>
+
+  <script>
+    let editingPostId = null;
+    let selectedImageUrl = "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800&auto=format&fit=crop&q=80";
+
+    document.addEventListener("DOMContentLoaded", () => {
+      // Check if URL has ?id=post-xxx for editing
+      const urlParams = new URLSearchParams(window.location.search);
+      editingPostId = urlParams.get("id");
+
+      loadCampaignOptions();
+      renderPhotoPresets();
+      updateAIHashtags();
+      setupLiveSync();
+
+      if (editingPostId) {
+        loadPostDataForEdit(editingPostId);
+      } else {
+        // Set default date to today
+        document.getElementById("postDate").value = new Date().toISOString().split('T')[0];
+      }
+    });
+
+    function loadCampaignOptions() {
+      const campaigns = DataStore.getCampaigns();
+      const select = document.getElementById("postCampaign");
+      campaigns.forEach(c => {
+        const opt = document.createElement("option");
+        opt.value = c.id;
+        opt.textContent = `${c.name} (${c.type})`;
+        select.appendChild(opt);
+      });
+    }
+
+    function renderPhotoPresets() {
+      const container = document.getElementById("presetsContainer");
+      INITIAL_HOTEL_DATA.photoPresets.forEach((preset, index) => {
+        const img = document.createElement("img");
+        img.src = preset.url;
+        img.title = preset.title;
+        img.className = `preset-img-thumbnail ${index === 0 ? 'selected' : ''}`;
+        img.addEventListener("click", () => {
+          document.querySelectorAll(".preset-img-thumbnail").forEach(el => el.classList.remove("selected"));
+          img.classList.add("selected");
+          selectedImageUrl = preset.url;
+          document.getElementById("postImageUrl").value = preset.url;
+          document.getElementById("previewImage").src = preset.url;
+        });
+        container.appendChild(img);
+      });
+    }
+
+    function updateAIHashtags() {
+      const topic = document.getElementById("aiTopicSelect").value;
+      const tags = AIGenerator.suggestHashtags(topic);
+      const container = document.getElementById("aiHashtagsContainer");
+      container.innerHTML = "";
+
+      tags.forEach(tag => {
+        const badge = document.createElement("span");
+        badge.className = "badge bg-secondary-subtle text-dark hashtag-badge";
+        badge.textContent = tag;
+        badge.title = "Click to append hashtag";
+        badge.addEventListener("click", () => {
+          const captionEl = document.getElementById("postCaption");
+          captionEl.value = (captionEl.value.trim() + " " + tag).trim();
+          updateLivePreview();
+        });
+        container.appendChild(badge);
+      });
+    }
+
+    function setupLiveSync() {
+      const titleInput = document.getElementById("postTitle");
+      const captionInput = document.getElementById("postCaption");
+      const urlInput = document.getElementById("postImageUrl");
+
+      titleInput.addEventListener("input", updateLivePreview);
+      captionInput.addEventListener("input", updateLivePreview);
+      urlInput.addEventListener("input", (e) => {
+        if (e.target.value.trim() !== "") {
+          selectedImageUrl = e.target.value;
+          document.getElementById("previewImage").src = selectedImageUrl;
+        }
+      });
+
+      // AI Generate button
+      document.getElementById("btnGenerateAI").addEventListener("click", () => {
+        const topic = document.getElementById("aiTopicSelect").value;
+        const tone = document.getElementById("aiToneSelect").value;
+        const activePlatform = document.querySelector("#previewPlatformTabs .nav-link.active").getAttribute("data-preview-target");
+        
+        const aiCaption = AIGenerator.generateCaption(topic, tone, activePlatform);
+        document.getElementById("postCaption").value = aiCaption;
+        updateLivePreview();
+        App.showToast("AI Luxury Caption generated successfully!");
+      });
+
+      document.getElementById("aiTopicSelect").addEventListener("change", updateAIHashtags);
+
+      // Tab switch for preview platforms
+      document.querySelectorAll("#previewPlatformTabs .nav-link").forEach(tab => {
+        tab.addEventListener("click", () => {
+          document.querySelectorAll("#previewPlatformTabs .nav-link").forEach(t => t.classList.remove("active"));
+          tab.classList.add("active");
+          const target = tab.getAttribute("data-preview-target");
+          
+          const accountName = document.getElementById("previewAccountName");
+          if (target === "instagram") accountName.textContent = "grandazure.resort";
+          else if (target === "facebook") accountName.textContent = "Grand Azure Resort & Spa";
+          else if (target === "tiktok") accountName.textContent = "@grandazurehotel";
+          else if (target === "x") accountName.textContent = "@GrandAzureHotel";
+        });
+      });
+
+      // Submit buttons
+      document.getElementById("btnSaveDraft").addEventListener("click", () => submitPost("draft"));
+      document.getElementById("btnSubmitReview").addEventListener("click", () => submitPost("in_review"));
+      document.getElementById("btnSchedulePost").addEventListener("click", () => submitPost("scheduled"));
+    }
+
+    function updateLivePreview() {
+      const title = document.getElementById("postTitle").value;
+      const caption = document.getElementById("postCaption").value;
+
+      document.getElementById("previewTitleText").textContent = title || "Post Title Headline";
+      document.getElementById("previewCaptionText").textContent = caption || "Caption will appear here...";
+      document.getElementById("charCount").textContent = caption.length;
+    }
+
+    function loadPostDataForEdit(id) {
+      const post = DataStore.getPostById(id);
+      if (!post) return;
+
+      document.getElementById("pageHeadingTitle").textContent = "Edit Hotel Post";
+      document.getElementById("postTitle").value = post.title;
+      document.getElementById("postCaption").value = post.caption;
+      document.getElementById("postImageUrl").value = post.image;
+      document.getElementById("postCampaign").value = post.campaignId || "";
+      document.getElementById("postDate").value = post.scheduledDate || "";
+      document.getElementById("postTime").value = post.scheduledTime || "12:00";
+      
+      selectedImageUrl = post.image;
+      document.getElementById("previewImage").src = post.image;
+
+      // Platform checkboxes
+      document.querySelectorAll(".platform-cb").forEach(cb => {
+        cb.checked = post.platforms && post.platforms.includes(cb.value);
+      });
+
+      updateLivePreview();
+    }
+
+    function submitPost(statusTarget) {
+      const title = document.getElementById("postTitle").value.trim();
+      const caption = document.getElementById("postCaption").value.trim();
+
+      if (!title) {
+        alert("Please enter a post title.");
+        document.getElementById("postTitle").focus();
+        return;
+      }
+      if (!caption) {
+        alert("Please enter a post caption.");
+        document.getElementById("postCaption").focus();
+        return;
+      }
+
+      const selectedPlatforms = [];
+      document.querySelectorAll(".platform-cb:checked").forEach(cb => {
+        selectedPlatforms.push(cb.value);
+      });
+
+      if (selectedPlatforms.length === 0) {
+        alert("Please select at least one social media platform.");
+        return;
+      }
+
+      const currentUser = AuthService.getCurrentUser();
+
+      const postPayload = {
+        title,
+        caption,
+        image: selectedImageUrl || document.getElementById("postImageUrl").value,
+        platforms: selectedPlatforms,
+        campaignId: document.getElementById("postCampaign").value,
+        scheduledDate: document.getElementById("postDate").value,
+        scheduledTime: document.getElementById("postTime").value,
+        status: statusTarget,
+        author: currentUser.name
+      };
+
+      if (editingPostId) {
+        DataStore.updatePost(editingPostId, postPayload);
+        App.showToast(`Post updated and saved as [${statusTarget.toUpperCase()}]!`);
+      } else {
+        DataStore.createPost(postPayload);
+        App.showToast(`New hotel post created with status [${statusTarget.toUpperCase()}]!`);
+      }
+
+      setTimeout(() => {
+        window.location.href = statusTarget === "in_review" ? "approval-workflow.html" : "dashboard.html";
+      }, 1000);
+    }
+  </script>
+</body>
+</html>
